@@ -144,22 +144,88 @@ namespace UseLicenseTax
 
                     int yearend = dateTimePicker2.Value.Year;
 
-                    int yearCount = Math.Abs(yearstart - yearend); //相差多少年  取絕對值   
+                    int yearCount = Math.Abs(yearstart - yearend) - 1; //相差多少年  取絕對值   
 
-                    if (this.dateTimePicker2.Value > this.dateTimePicker1.Value)// 零散---->前段
+                    if (this.dateTimePicker2.Value > this.dateTimePicker1.Value)  // 零散---->前段     前面時間(2020.03.15)   後面時間(2022.05.06)
                     {
-                        
+                        DateTime endDate2 = new DateTime(dateTimePicker2.Value.Year, 12, 31);
+                        DateTime pickDate2 = new DateTime(dateTimePicker2.Value.Year, dateTimePicker2.Value.Month, dateTimePicker2.Value.Day);
+                        int days2 = pickDate2.Subtract(endDate2).Days;   //dateTimePicker2那年的天數
+                        int result2 = (int)TaxCCCalculate() * days2 / dateTimePicker2.Value.DayOfYear;
+
                         for (int i = yearCount; i > 0; i--)  // 整年度--->中間
                         {
+                            string Allyear = $"{dateTimePicker2.Value.AddYears(i)}";  //中間的年份
 
+                            bool totalLeapYear = DateTime.IsLeapYear(dateTimePicker2.Value.AddYears(i));
+                            21
                         }
-                        // 零散---->後段
+                        DateTime endDate1 = new DateTime(dateTimePicker1.Value.Year, 12, 31);  // 零散---->後段
+                        DateTime pickDate1 = new DateTime(dateTimePicker1.Value.Year, dateTimePicker1.Value.Month, dateTimePicker1.Value.Day);
+                        int days1 = pickDate1.Subtract(endDate1).Days;  //dateTimePicker1那年的天數
+                        int result1 = (int)TaxCCCalculate() * days1 / dateTimePicker1.Value.DayOfYear ;
+
+                        int totalresult = result1 + result2 + result3;
+                        this.lblresult.Text =
+                            
+                            $"使用期間 : {txtdate1.Text} ~ {dateTimePicker1.Value.Year}, 12, 31 " +    //前
+                            $"\n計算天數 :{days1} 天 " +
+                            $"\n用途 : {cmbUse.SelectedItem} " +
+                            $"\n汽缸CC數應繳金額 : {TaxCCCalculate()}" + 
+                            $"\n計算公式 : {TaxCCCalculate()} * {days1} / {dateTimePicker1.Value.DayOfYear} = {result1}" +
+
+                            $"使用期間 : {dateTimePicker1.Value.AddYears(1)}, 01, 01 ~ {dateTimePicker2.Value.AddYears(-1)}, 12, 31 " +
+                            //$"\n計算天數 :{days1} 天 " +
+                            $"\n用途 : {cmbUse.SelectedItem} " +
+                            $"\n汽缸CC數應繳金額 : {TaxCCCalculate()}" +
+                            //$"\n計算公式 : {TaxCCCalculate()} * {days1} / {dateTimePicker1.Value.DayOfYear} = {result3}" +
+
+                            $"\n使用期間 : {txtdate2.Text} ~ {dateTimePicker2.Value.Year}, 12, 31 " +  //後
+                            $"\n計算天數 :{days2} 天 " +
+                            $"\n用途 : {cmbUse.SelectedItem} " +
+                            $"\n汽缸CC數應繳金額 : {TaxCCCalculate()}" +
+                            $"\n計算公式 : {TaxCCCalculate()} * {days2} / {dateTimePicker2.Value.DayOfYear} = {result2}" +
+                            $" \n應納稅額 : 共 {totalresult} 元";
                     }
                     else 
                     {
                         for (int i = yearCount; i > 0; i--)  // 整年度--->中間
                         {
+                            DateTime endDate1 = new DateTime(dateTimePicker1.Value.Year, 12, 31);
+                            DateTime pickDate1 = new DateTime(dateTimePicker1.Value.Year, dateTimePicker1.Value.Month, dateTimePicker1.Value.Day);
+                            int days1 = pickDate1.Subtract(endDate1).Days;   //dateTimePicker1那年的天數
+                            int result1 = (int)TaxCCCalculate() * days1 / dateTimePicker1.Value.DayOfYear;
 
+                            //bool isLeapYear = DateTime.IsLeapYear(dateTimePicker2.Value.Year); //閏年
+                            //if (isLeapYear == true)
+                            //    return 366;
+                            //else
+                            //    return 365;
+                            for (int i = yearCount; i > 0; i--)  // 整年度--->中間
+                            {
+
+                            }
+                            DateTime endDate2 = new DateTime(dateTimePicker2.Value.Year, 12, 31);  // 零散---->後段
+                            DateTime pickDate2 = new DateTime(dateTimePicker2.Value.Year, dateTimePicker2.Value.Month, dateTimePicker2.Value.Day);
+                            int days2 = pickDate2.Subtract(endDate2).Days;  //dateTimePicker2那年的天數
+                            int result2 = (int)TaxCCCalculate() * days2 / dateTimePicker2.Value.DayOfYear;
+                            
+                            
+                            this.lblresult.Text =
+
+
+                                    $"使用期間 : {txtdate2.Text} ~ {dateTimePicker1.Value.Year}, 12, 31 " +
+                                    $"\n計算天數 :{days2} 天 " +
+                                    $"\n用途 : {cmbUse.SelectedItem} " +
+                                    $"\n汽缸CC數應繳金額 : {TaxCCCalculate()}" +
+                                    $"\n計算公式 : {TaxCCCalculate()} * {days2} / {dateTimePicker2.Value.DayOfYear} = {result2}" +
+
+                                    $"\n使用期間 : {txtdate1.Text} ~ {dateTimePicker1.Value.Year}, 12, 31 " +
+                                    $"\n計算天數 :{days1} 天 " +
+                                    $"\n用途 : {cmbUse.SelectedItem} " +
+                                    $"\n汽缸CC數應繳金額 : {TaxCCCalculate()}" +
+                                    $"\n計算公式 : {TaxCCCalculate()} * {days1} / {dateTimePicker1.Value.DayOfYear} = {result1}" +
+                                    $" \n應納稅額 : 共 {totalresult} 元";
                         }
                         // 零散---->後段
                     }
