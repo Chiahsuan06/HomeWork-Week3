@@ -123,13 +123,21 @@ namespace UseLicenseTax
             {
                 MessageBox.Show("~~請選擇 汽缸CC數／馬達馬力 ~~");
             }
+            else if (this.txtdate1.Text == string.Empty) 
+            {
+                MessageBox.Show("~~請填入 時間 ~~");
+            }
+            else if (this.txtdate2.Text == string.Empty)
+            {
+                MessageBox.Show("~~請填入 時間 ~~");
+            }
             else if (radioButtonYear.Checked)
             {
                 int result = (int)TaxCCCalculate() * DayOfYear() / DayOfYear();
                 this.lblresult.Visible = true;
                 this.lblresult.Text =
                     $"使用期間 : {DateTime.Now.Year}.01.01 ~ {DateTime.Now.Year}.12.31 \n計算天數 : {DayOfYear()}天\n用途 : {cmbUse.SelectedItem}\n汽缸CC數應繳金額 : {TaxCCCalculate()}" +
-                    $"\n計算公式 : {TaxCCCalculate()} * {DayOfYear()} / {DayOfYear()} = {result}" + $"\n應納稅額 : 共 {result} 元";  
+                    $"\n計算公式 : {TaxCCCalculate()} * {DayOfYear()} / {DayOfYear()} = {result}" + $"\n應納稅額 : 共 {result} 元";
             }
             else
             {
@@ -153,7 +161,7 @@ namespace UseLicenseTax
                         $"\n計算公式 : {TaxCCCalculate()} * {DayOfPeriod()} / {DayOfYear()} = {result}" + $"\n應納稅額 : 共 {result} 元";
                     }
                 }
-                else if(this.dateTimePicker1.Value.Year != this.dateTimePicker2.Value.Year)  //若不同年 用for迴圈
+                else if (this.dateTimePicker1.Value.Year != this.dateTimePicker2.Value.Year)  //若不同年 用for迴圈
                 {
                     int yearstart = dateTimePicker1.Value.Year;
 
@@ -186,7 +194,7 @@ namespace UseLicenseTax
                         DateTime endDate1 = new DateTime(dateTimePicker1.Value.Year, 12, 31);  // 零散---->後段
                         DateTime pickDate1 = new DateTime(dateTimePicker1.Value.Year, dateTimePicker1.Value.Month, dateTimePicker1.Value.Day);
                         int days1 = pickDate1.Subtract(endDate1).Days;  //dateTimePicker1那年的天數
-                        int result1 = (int)TaxCCCalculate() * days1 / dateTimePicker1.Value.DayOfYear ;
+                        int result1 = (int)TaxCCCalculate() * days1 / dateTimePicker1.Value.DayOfYear;
 
                         //int totalresult = result1 + result2 + result3;
                         this.lblresult.Text =
@@ -208,9 +216,9 @@ namespace UseLicenseTax
                             $"\n用途 : {cmbUse.SelectedItem} " +
                             $"\n汽缸CC數應繳金額 : {TaxCCCalculate()}" +
                             $"\n計算公式 : {TaxCCCalculate()} * {days2} / {dateTimePicker2.Value.DayOfYear} = {result2}";
-                            //+ $" \n應納稅額 : 共 {totalresult} 元";
+                        //+ $" \n應納稅額 : 共 {totalresult} 元";
                     }
-                    else 
+                    else
                     {
                         for (int i = yearCount; i > 0; i--)  // 整年度--->中間
                         {
@@ -248,15 +256,15 @@ namespace UseLicenseTax
                                     $"\n用途 : {cmbUse.SelectedItem} " +
                                     $"\n汽缸CC數應繳金額 : {TaxCCCalculate()}" +
                                     $"\n計算公式 : {TaxCCCalculate()} * {days1} / {dateTimePicker1.Value.DayOfYear} = {result1}";
-                                    //+ $" \n應納稅額 : 共 {totalresult} 元";
+                            //+ $" \n應納稅額 : 共 {totalresult} 元";
                         }
                         // 零散---->後段
                     }
 
                 }
 
-                
-                
+
+
             }   //待更新   不同年份分開計算
             
             //結果  閏年狀態 跨年分兩筆未做
@@ -503,37 +511,37 @@ namespace UseLicenseTax
                             switch (cmbCCBusinesscar)  //選擇後回傳相應的價格
                             {
                                 case "500以下":
-                                    return 1620;
+                                    return 900;
                 
                                 case "501~600":
-                                    return 2160;
+                                    return 1260;
                
                                 case "601~1200":
-                                    return 4320;
+                                    return 2160;
                 
                                 case "1201~1800":
-                                    return 7120;
+                                    return 3060;
                
                                 case "1801~2400":
-                                    return 11230;
+                                    return 6480;
                 
                                 case "2401~3000":
-                                    return 15210;
+                                    return 9900;
                
                                 case "3001~4200":
-                                    return 28220;
+                                    return 16380;
                 
                                 case "4201~5400":
-                                    return 46170;
+                                    return 24300;
                 
                                 case "5401~6600":
-                                    return 69690;
+                                    return 33660;
                 
                                 case "6601~7800":
-                                    return 117000;
+                                    return 44460;
                
                                 case "7801以上":
-                                    return 151200;
+                                    return 56700;
             
                                 default:
                                     return 0;
