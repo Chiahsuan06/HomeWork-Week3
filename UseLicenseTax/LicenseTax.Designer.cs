@@ -370,7 +370,7 @@ namespace UseLicenseTax
             this.cmbCCcar.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.cmbCCcar.FormattingEnabled = true;
             this.cmbCCcar.Items.AddRange(new object[] {
-            "500以 下",
+            "500以下",
             "501~600",
             "601~1200",
             "1201~1800",
@@ -393,7 +393,7 @@ namespace UseLicenseTax
             this.cmbCCBusinesscar.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.cmbCCBusinesscar.FormattingEnabled = true;
             this.cmbCCBusinesscar.Items.AddRange(new object[] {
-            "500以 下",
+            "500以下",
             "501~600",
             "601~1200",
             "1201~1800",
