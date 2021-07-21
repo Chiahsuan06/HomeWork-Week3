@@ -118,18 +118,18 @@ namespace UseLicenseTax
             {
                 MessageBox.Show("~~請選擇 用途 ~~");
             }
-            else if (cmbCCscooter.SelectedIndex == -1 && cmbCCtruck.SelectedIndex == -1 &&
-                     cmbCCcoach.SelectedIndex == -1 && cmbCCcar.SelectedIndex == -1 && cmbCCBusinesscar.SelectedIndex == -1)  //沒選擇 汽缸CC數／馬達馬力 跳出提醒
-            {
-                MessageBox.Show("~~請選擇 汽缸CC數／馬達馬力 ~~");
-            }
-            else if (this.txtdate1.Text == string.Empty) 
+            else if (this.txtdate1.Text == string.Empty)
             {
                 MessageBox.Show("~~請填入 時間 ~~");
             }
             else if (this.txtdate2.Text == string.Empty)
             {
                 MessageBox.Show("~~請填入 時間 ~~");
+            }
+            else if (cmbCCscooter.SelectedIndex == -1 && cmbCCtruck.SelectedIndex == -1 &&
+                     cmbCCcoach.SelectedIndex == -1 && cmbCCcar.SelectedIndex == -1 && cmbCCBusinesscar.SelectedIndex == -1)  //沒選擇 汽缸CC數／馬達馬力 跳出提醒
+            {
+                MessageBox.Show("~~請選擇 汽缸CC數／馬達馬力 ~~");
             }
             else if (radioButtonYear.Checked)
             {
